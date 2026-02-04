@@ -11,7 +11,7 @@ Python の **英語エラーメッセージを自動的に翻訳して置き換�
 ## bash
 pip install errortranslator
 ## 🚀 使い方（最重要）
-**✅ 基本の使い方**
+## ✅ 基本の使い方
 Pythonファイルの一番上に、必ずこの2行を書く
 from errortranslator import et
 et(lang="ja")
@@ -21,20 +21,21 @@ et(lang="ja")
 
 a = 10
 print(b)
-**✅ 実行結果**
+
+## ✅ 実行結果
 File "test.py", line 6
 NameError: 変数が定義されていません
 英語のエラーメッセージは 一切表示されません
 Python標準エラーを 完全に置き換え
 try / except は不要
 既存コードはそのまま使えます
-**🌍 言語指定**
+## 🌍 言語指定
 et(lang="ja")    # 日本語
 et(lang="en")    # 英語
 et(lang="ko")    # 韓国語
 et(lang="zh")    # 中国語
 et(lang="auto")  # 自動判定（Gemini）
-**🔑 Gemini API の設定（翻訳品質アップ）**
+## 🔑 Gemini API の設定（翻訳品質アップ）
 ローカル / Colab（macOS / Linux）
 export GEMINI_API_KEY="your_api_key"
 Windows（PowerShell）
@@ -45,7 +46,7 @@ GEMINI_API_KEY を追加
 env:
   GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
 ※ APIキーが無くても fallback（内蔵辞書）で動作します
-**🛟 fallback について**
+## 🛟 fallback について
 Gemini API が使えない場合でも、
 以下のエラーは 内蔵辞書で翻訳されます。
 NameError
@@ -53,7 +54,7 @@ SyntaxError
 TypeError
 IndexError
 → API未設定でもクラッシュしません
-**⚙️ 仕組み**
+## ⚙️ 仕組み
 sys.excepthook を置き換え
 Pythonの全例外を自動キャッチ
 エラーメッセージを整形（utils）
