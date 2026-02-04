@@ -1,19 +1,20 @@
 import sys
 import traceback
 from .translator import translate_error
+from .utils import normalize_error, extract_last_frame
 
 _original_hook = sys.excepthook
 
 def et(lang="auto", minimal=True):
     def hook(exc_type, exc, tb):
-        raw = "".join(traceback.format_exception_only(exc_type, exc)).strip()
-        msg = translate_error(raw, lang=lang)
+        raw = "".join(traceback.format_exception_only(exc_type, exc))
+        clean = normalize_error(raw)
+        translated = translate_error(clean, lang)
 
         if minimal:
-            last = traceback.extract_tb(tb)[-1]
-            print(f'File "{last.filename}", line {last.lineno}')
-            print(f"{exc_type.__name__}: {msg}")
+            print(extract_last_frame(tb))
+            print(f"{exc_type.__name__}: {translated}")
         else:
-            print(msg)
+            print(translated)
 
     sys.excepthook = hook
