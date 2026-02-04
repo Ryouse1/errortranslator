@@ -1,0 +1,10 @@
+[project]
+name = "errortranslator"
+version = "1.0.0"
+description = "Automatically translate Python errors"
+authors = [{ name = "ryouse1" }]
+dependencies = ["google-generativeai"]
+
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
